@@ -1,17 +1,23 @@
-import { logHandler } from "./utils/logHandler";
+import { Client, Events, WebhookClient } from "discord.js";
 
-/**
- * The linter will expect JSDoc declarations for all exported functions.
- *
- * @param {string} name Variables should be typed, and full sentences are expected.
- * @returns {string} The return type should be specified.
- */
-const main = (name: string): string => {
-  const string = `Hello ${name}!`;
-  logHandler.log("info", string);
-  return string;
-};
+import { Intents } from "./config/Intents";
+import { onInteraction } from "./events/onInteraction";
+import { onReady } from "./events/onReady";
+import { ExtendedClient } from "./interfaces/ExtendedClient";
+import { loadCommands } from "./utils/loadCommands";
 
-main("Naomi");
+(async () => {
+  const bot = new Client({ intents: Intents }) as ExtendedClient;
+  bot.debug = new WebhookClient({ url: process.env.DEBUG_HOOK as string });
+  await loadCommands(bot);
 
-export default main;
+  bot.on(Events.ClientReady, async () => {
+    await onReady(bot);
+  });
+
+  bot.on(Events.InteractionCreate, async (interaction) => {
+    await onInteraction(bot, interaction);
+  });
+
+  await bot.login(process.env.TOKEN);
+})();

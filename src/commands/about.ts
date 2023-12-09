@@ -20,7 +20,7 @@ export const about: Command = {
     } catch (err) {
       await errorHandler(bot, "about command", err);
       await interaction.editReply({
-        content: "Something went wrong. Please try again later.",
+        content: "Something went wrong. Please contact Naomi.",
       });
     }
   },

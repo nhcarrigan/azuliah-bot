@@ -20,6 +20,20 @@ export const onMessage = async (bot: ExtendedClient, message: Message) => {
     ) {
       await message.channel.send({
         content: `<@!465650873650118659> is a bitch.`,
+        allowedMentions: {
+          parse: [],
+        },
+      });
+    }
+    if (
+      message.content.toLowerCase().includes("azuliah") ||
+      message.mentions.users.has("1126156476847755314")
+    ) {
+      await message.channel.send({
+        content: `Gaslight, Gatekeep, Girl Piss`,
+        allowedMentions: {
+          parse: [],
+        },
       });
     }
   } catch (err) {

@@ -36,6 +36,18 @@ export const onMessage = async (bot: ExtendedClient, message: Message) => {
         },
       });
     }
+    if (message.content.toLowerCase().includes("piss")) {
+      await message.channel.send({
+        content:
+          "https://tenor.com/view/mari-ohara-gamer-girl-pee-sifas-love-live-gif-23412824",
+      });
+    }
+    if (message.content.toLowerCase().includes("pee")) {
+      await message.channel.send({
+        content:
+          "https://tenor.com/view/piss-ed-peepee-fulcrum501-gif-22002454",
+      });
+    }
   } catch (err) {
     await errorHandler(bot, "on message", err);
   }

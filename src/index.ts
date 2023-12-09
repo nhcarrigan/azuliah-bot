@@ -1,10 +1,10 @@
 import { Client, Events, WebhookClient } from "discord.js";
 
 import { Intents } from "./config/Intents";
+import { onInteraction } from "./events/onInteraction";
+import { onReady } from "./events/onReady";
 import { ExtendedClient } from "./interfaces/ExtendedClient";
 import { loadCommands } from "./utils/loadCommands";
-import { onReady } from "./events/onReady";
-import { onInteraction } from "./events/onInteraction";
 
 (async () => {
   const bot = new Client({ intents: Intents }) as ExtendedClient;

@@ -7,8 +7,12 @@ import { registerCommands } from "../utils/registerCommands";
  * @param {ExtendedClient} bot The bot's Discord instance.
  */
 export const onReady = async (bot: ExtendedClient) => {
-  await bot.debug.send(
-    `Logged in as ${bot.user?.displayName || bot.user?.username}`
-  );
+  await bot.debug.send({
+    content: `Logged in as ${bot.user?.displayName || bot.user?.username}`,
+    username: bot.user?.username ?? "Azuliah Bot",
+    avatarURL:
+      bot.user?.displayAvatarURL() ??
+      "https://cdn.nhcarrigan.com/avatars/nhcarrigan.png",
+  });
   await registerCommands(bot);
 };
